@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>EXO WORLDS — Inside Kepler</title>
+  <meta name="description" content="Interactive 3D cinematic story of NASA's Kepler Space Telescope and exoplanet discovery by Team Dormant." />
+  <meta property="og:title" content="EXO WORLDS — Inside Kepler" />
+  <meta property="og:description" content="Interactive 3D cinematic story of NASA's Kepler Space Telescope and exoplanet discovery by Team Dormant." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Syncopate (Bold), Cormorant Garamond (Italic 500), Manrope (300, 400, 500, 600, 700) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Manrope:wght@300;400;500;600;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/chapter3.css">
+
+  <!-- Pinned Three.js r128, Controls, DRACOLoader & GLTFLoader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+  <!-- Fixed Background Starfield & Cursor Glow Orb -->
+  <canvas id="sky"></canvas>
+  <div id="orb"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="nav" id="topNav">
+    <svg class="emblem" viewBox="0 0 250 56" role="img" aria-label="NASA Space Apps Challenge">
+      <circle cx="28" cy="28" r="24" fill="none" stroke="#8fd3ff" stroke-width="1.5"/>
+      <ellipse cx="28" cy="28" rx="24" ry="8.5" fill="none" stroke="#ffb27a" stroke-width="1.2" transform="rotate(-24 28 28)"/>
+      <circle cx="28" cy="28" r="6" fill="#8fd3ff"/>
+      <circle cx="48" cy="19" r="2.4" fill="#ffb27a"/>
+      <text x="64" y="25" fill="#e9eef7" font-family="'Syncopate',sans-serif" font-weight="700" font-size="11" letter-spacing="2.4">NASA SPACE APPS</text>
+      <text x="64" y="41" fill="#9aa7bd" font-family="'Syncopate',sans-serif" font-weight="700" font-size="9.5" letter-spacing="3.6">CHALLENGE</text>
+    </svg>
+    <div class="nav-right">
+      <span class="audio-hint" id="audioHint" style="display:none">Sound is on, click anywhere to start</span>
+      <button class="pill" id="ccBtn" aria-pressed="true" type="button">CC [ON]</button>
+      <button class="pill" id="audioBtn" aria-pressed="true" type="button">&#10074;&#10074; NARRATOR [ON]</button>
+      <button class="pill narrator-ctrl" id="narratorPlayPauseBtn" type="button" title="Play / Pause" style="display:none">▶</button>
+      <button class="pill narrator-ctrl" id="narratorReplayBtn" type="button" title="Replay slide">↺</button>
+      <button class="pill" id="aboutNavBtn" data-open="about" type="button">ABOUT US</button>
+      <button class="pill" id="contactNavBtn" data-open="contact" type="button">CONTACT US</button>
+    </div>
+  </header>
+
+  <!-- Main Slide Deck Stage (100dvh Fixed Viewport) -->
+  <main id="stage" class="deck-stage">
+
+    <!-- PROLOGUE PAGE 1: HERO -->
+    <section class="slide-deck-item active" id="hero" data-slide-index="0" aria-label="Welcome">
+      <div class="wrap hero">
+        <div class="hero-content">
+          <h1 class="title">EXO<br>WORLDS</h1>
+          <div class="film-title-hook">
+            <span class="hook-line line-1">Step beyond our sky and witness the untold story of a lone machine that changed how we see the universe.</span>
+            <span class="hook-line line-2">Your journey into the unknown begins now...</span>
+          </div>
+        </div>
+        <div class="planet-box">
+          <div class="planet-fallback"></div>
+          <canvas id="planet3d" aria-label="A slowly rotating 3D exoplanet"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROLOGUE PAGE 2: TRIBUTE -->
+    <section class="slide-deck-item" id="tribute" data-slide-index="1" aria-label="Tribute">
+      <div class="wrap tribute">
+        <div class="glass carousel" id="carousel" aria-label="Photos of William Borucki and the Kepler team">
+          <figure class="slide on" data-file="NASA / Ames">
+            <img src="./assets/borucki-1.jpg" alt="Dr. William Borucki" onerror="this.remove()">
+            <figcaption>Dr. William Borucki, Kepler Principal Investigator</figcaption>
+          </figure>
+          <figure class="slide" data-file="NASA / Ames">
+            <img src="./assets/kepler-team2.jpg" alt="The Kepler mission team" onerror="this.remove()">
+            <figcaption>David Koch, Kepler Deputy Principal Investigator</figcaption>
+          </figure>
+          <figure class="slide" data-file="NASA / Ames">
+            <img src="./assets/kepler-team.jpg" alt="The Kepler mission team" onerror="this.remove()">
+            <figcaption>The NASA Kepler Mission Team</figcaption>
+          </figure>
+          <div class="cdots"></div>
+        </div>
+
+        <div class="info">
+          <h2 class="head">A Tribute to William Borucki &amp; The Kepler Team</h2>
+          <p class="glass intro">Inspired by Dr. William Borucki, David Koch, and the NASA Kepler Mission Team, our project transforms their historic discoveries into an interactive story—honouring the pioneers who taught humanity how to watch the stars blink.</p>
+          <div class="tabs">
+            <button class="tab" aria-expanded="false" aria-controls="p1" type="button">1. Major Contributions</button>
+            <button class="tab" aria-expanded="false" aria-controls="p2" type="button">2. Key Achievements</button>
+            <button class="tab" aria-expanded="false" aria-controls="p3" type="button">3. Scientific Frontiers &amp; Curiosity</button>
+          </div>
+          <div class="glass panel" id="p1">
+            <ul>
+              <li><b>95-Megapixel Deep-Space Photometer</b>Engineered and launched the largest digital camera in space at the time, capable of monitoring over 150,000 stars simultaneously with 84-ppm precision.</li>
+              <li><b>Automated Transit Pipeline</b>Built the Kepler Science Operations centre software to filter out stellar noise and turn raw brightness curves into verified planetary candidates.</li>
+              <li><b>The K2 Solar-Pressure Rescue</b>Pioneered an ingenious stabilization method using sunlight photon pressure after two reaction wheels failed in 2013, extending the mission for four more years.</li>
+            </ul>
+          </div>
+          <div class="glass panel" id="p2">
+            <ul>
+              <li><b>2,700+ Confirmed Exoplanets</b>Proved that planets outnumber stars in the Milky Way and identified the first Earth-sized worlds in habitable zones (such as Kepler-186f).</li>
+              <li><b>Historic NASA &amp; Industry Awards</b>Honoured with the NASA Group Achievement Award, the National Air and Space Museum Trophy (2013), and the John L. “Jack” Swigert Jr. Award for Space Exploration.</li>
+              <li><b>Open-Science Legacy</b>Released massive public datasets via the NASA Exoplanet Archive, enabling citizen scientists and global researchers to continue discovering worlds years after retirement.</li>
+            </ul>
+          </div>
+          <div class="glass panel" id="p3">
+            <ul>
+              <li><b>System Architecture</b>Mapping tightly packed planetary systems and unfamiliar worlds like super-Earths and mini-Neptunes.</li>
+              <li><b>Asteroseismology</b>Tracking subtle “starquakes” in starlight to measure the true size, mass, and age of distant stars.</li>
+              <li><b>Deep-Space Phenomena</b>Using the K2 mission to observe exploding supernovae, active black holes, and binary star systems.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROLOGUE PAGE 3: TEAM DORMANT HUB -->
+    <section class="slide-deck-item" id="hub" data-slide-index="2" aria-label="Team Dormant hub">
+      <div class="wrap hub">
+        <div class="logo-ring">
+          <img id="teamLogo" src="./assets/team-dormant-logo.png" alt="Team Dormant logo" hidden>
+          <svg id="logoFallback" viewBox="0 0 60 60" fill="none" stroke="#8fd3ff" stroke-width="2" aria-hidden="true">
+            <circle cx="30" cy="30" r="20"/>
+            <path d="M12 38c10 6 26 4 36-8" stroke="#ffb27a"/>
+            <circle cx="30" cy="30" r="4" fill="#8fd3ff"/>
+          </svg>
+        </div>
+        <h2>TEAM DORMANT</h2>
+        <p class="tag">Named after the silent Kepler telescope—proving that even dormant missions still spark new discoveries.</p>
+        <div class="actions">
+          <a class="act" id="ghLink" href="https://github.com/AgnesJerusha/Kepler--main" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>
+            </svg>GITHUB REPOSITORY
+          </a>
+          <button class="act" id="missionNavBtn" data-open="missionNavModal" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <polygon points="10 14 14 10 16 16 10 14"/>
+            </svg>CHAPTERS &amp; SECTIONS
+          </button>
+          <button class="act primary" id="launchBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2c3 2 5 6 5 10l-2 4H9l-2-4c0-4 2-8 5-10z"/>
+              <circle cx="12" cy="9.5" r="1.6"/>
+              <path d="M9 16l-3 4M15 16l3 4M12 17v4"/>
+            </svg>LAUNCH MISSION
+          </button>
+        </div>
+        <footer class="hub-footer" aria-label="Project Transparency Footer">
+          <a class="hub-footer-link" href="./acknowledgements.html">
+            <span>ACKNOWLEDGEMENTS &amp; SI DISCLOSURE</span>
+            <span class="hub-footer-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </footer>
+      </div>
+    </section>
+
+    <!-- CHAPTER 1 CINEMATIC CONTAINER -->
+    <section class="slide-deck-item" id="chapter-1" data-slide-index="3" aria-label="Chapter 1: The Kepler Story">
+      <!-- Persistent Top-Left Chapter 1 Header (under navbar) -->
+      <div class="ch-persistent-header" id="chPersistentHeader">
+        <div class="ch-header-left">
+          <span class="ch-badge" id="chBadge">CHAPTER 1</span>
+          <h2 class="ch-section-title" id="chSectionTitle">THE MYSTERY OF THE UNIVERSE</h2>
+          <p class="ch-section-subtitle" id="chSectionSubtitle">Is anyone out there?</p>
+        </div>
+      </div>
+
+      <!-- Chapter 1 Entry Title Card (blur -> ~2.3s hold -> glide to top-left header) -->
+      <div class="ch1-intro-overlay" id="ch1IntroOverlay" aria-hidden="true">
+        <div class="ch1-intro-inner">
+          <span class="ch-titlecard-badge">CHAPTER 1</span>
+          <h1 class="ch-titlecard-title">AWAKENING THE COSMOS</h1>
+          <div class="ch-titlecard-line"></div>
+          <p class="ch-titlecard-sub ch1-intro-sub">THE KEPLER STORY</p>
+        </div>
+      </div>
+
+      <!-- Center Title Card Overlay for Section Transitions -->
+      <div class="ch-titlecard-overlay" id="chTitleCardOverlay">
+        <div class="ch-titlecard-inner" id="chTitleCardInner">
+          <span class="ch-titlecard-badge">CHAPTER 1</span>
+          <h1 class="ch-titlecard-title" id="chTitleCardTitle">THE MYSTERY OF THE UNIVERSE</h1>
+          <div class="ch-titlecard-line" id="chTitleCardLine"></div>
+          <p class="ch-titlecard-sub" id="chTitleCardSub">Is anyone out there?</p>
+        </div>
+      </div>
+
+      <!-- Visual Stage Area (Three.js WebGL + 2D Cinematic Layers) -->
+      <div class="ch-visual-stage" id="chVisualStage">
+        <canvas id="chVisualCanvas" aria-label="Cinematic 3D Astronomical Visual Stage"></canvas>
+        <div class="ch-stage-overlay" id="chStageOverlay"></div>
+
+        <!-- Transit Light Curve Telemetry Panel (s04, s05: cleanly placed on right side) -->
+        <div class="transit-panel glass" id="transitPanel">
+          <div class="panel-header">
+            <span class="panel-tag">TRANSIT PHOTOMETRY</span>
+            <span class="panel-status">REAL-TIME FLUX</span>
+          </div>
+          <svg class="transit-svg" id="transitSvg" viewBox="0 0 540 220" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="curveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#8fd3ff" stop-opacity="0.85"/>
+                <stop offset="50%" stop-color="#ffb27a" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#8fd3ff" stop-opacity="0.85"/>
+              </linearGradient>
+            </defs>
+            <!-- Baseline & Axis -->
+            <line x1="30" y1="50" x2="510" y2="50" stroke="rgba(143,211,255,0.25)" stroke-dasharray="4 4" stroke-width="1"/>
+            <text x="35" y="40" fill="#8fd3ff" font-family="'Manrope',sans-serif" font-size="11" letter-spacing="1">STELLAR BRIGHTNESS (1.000000)</text>
+            <!-- Dynamic Transit Light Curve Path -->
+            <path id="transitCurvePath" d="M 30,50 L 160,50 Q 210,50 240,145 L 300,145 Q 330,50 380,50 L 510,50" fill="none" stroke="url(#curveGrad)" stroke-width="3" stroke-linecap="round"/>
+            <!-- 84 ppm Dip Marker (s05) -->
+            <g id="transitDipMarker" class="dip-marker">
+              <line x1="270" y1="50" x2="270" y2="145" stroke="#ffb27a" stroke-width="1.5" stroke-dasharray="2 3"/>
+              <circle cx="270" cy="145" r="4.5" fill="#ffb27a"/>
+              <rect x="285" y="85" width="135" height="32" rx="6" fill="rgba(10,16,32,0.92)" stroke="#ffb27a" stroke-width="1"/>
+              <text x="295" y="106" fill="#ffb27a" font-family="'Syncopate',sans-serif" font-weight="700" font-size="10.5" letter-spacing="1">DIP: 84 PPM</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Borucki Photo Ken Burns Overlay (s06) -->
+        <div class="borucki-overlay" id="boruckiOverlay">
+          <div class="borucki-frame">
+            <img src="./assets/borucki-1.jpg" alt="Dr. William Borucki" id="boruckiImg">
+            <span class="nasa-credit-tag">IMAGE: NASA / AMES RESEARCH CENTER</span>
+          </div>
+        </div>
+
+        <!-- "No." Sequence & Team Crossfade Overlay (s07) -->
+        <div class="no-seq-overlay" id="noSeqOverlay">
+          <div class="no-word-box" id="noWordBox">
+            <span class="no-word" id="noWord1">NO.</span>
+            <span class="no-word" id="noWord2">NO.</span>
+          </div>
+          <div class="team-crossfade" id="teamCrossfade">
+            <img src="./assets/kepler-team.jpg" alt="The Kepler Team" id="teamImg">
+            <span class="nasa-credit-tag">IMAGE: NASA KEPLER MISSION TEAM</span>
+          </div>
+          <div class="blueprint-box" id="blueprintBox">
+            <svg class="blueprint-svg" viewBox="0 0 400 400">
+              <circle cx="200" cy="200" r="160" fill="none" stroke="#8fd3ff" stroke-width="1.2" stroke-dasharray="6 4" opacity="0.4"/>
+              <rect x="130" y="80" width="140" height="240" fill="none" stroke="#8fd3ff" stroke-width="1.8" opacity="0.7"/>
+              <ellipse cx="200" cy="80" rx="70" ry="25" fill="none" stroke="#8fd3ff" stroke-width="1.5" opacity="0.8"/>
+              <line x1="90" y1="120" x2="310" y2="120" stroke="#ffb27a" stroke-width="1.2" opacity="0.6"/>
+              <line x1="90" y1="280" x2="310" y2="280" stroke="#ffb27a" stroke-width="1.2" opacity="0.6"/>
+              <text x="200" y="210" text-anchor="middle" fill="#8fd3ff" font-family="'Syncopate',sans-serif" font-size="10" letter-spacing="3">KEPLER ARCHITECTURE</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Cape Canaveral Launch Canvas Overlay (s08) -->
+        <div class="rocket-overlay" id="rocketOverlay">
+          <canvas id="rocketCanvas"></canvas>
+          <div class="countdown-display" id="countdownDisplay"></div>
+        </div>
+
+        <!-- Orbit Diagram Overlay (s09: Cleanly placed on the left side) -->
+        <div class="orbit-overlay" id="orbitOverlay">
+          <canvas id="orbitCanvas"></canvas>
+        </div>
+
+        <!-- Kepler 3D Hotspot Labels (s10) -->
+        <div class="kepler-hotspots" id="keplerHotspots">
+          <div class="hotspot" id="hotspotSolar">
+            <div class="hotspot-dot"></div>
+            <div class="hotspot-label">
+              <b>SOLAR PANEL</b>
+              <span>Gallium-Arsenide wings providing power</span>
+            </div>
+          </div>
+          <div class="hotspot" id="hotspotAntenna">
+            <div class="hotspot-dot"></div>
+            <div class="hotspot-label">
+              <b>ANTENNA</b>
+              <span>High-gain deep-space telemetry dish</span>
+            </div>
+          </div>
+          <div class="hotspot" id="hotspotPhotometer">
+            <div class="hotspot-dot"></div>
+            <div class="hotspot-label">
+              <b>95-MP PHOTOMETER</b>
+              <span>42 CCD array monitoring 150,000 stars</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Star Count Indicator (s10: Neatly placed in top right telemetry position) -->
+        <div class="star-counter-wrap" id="starCounterWrap">
+          <span class="counter-num" id="counterNum">0</span>
+          <span class="counter-sub">STARS MONITORED SIMULTANEOUSLY</span>
+        </div>
+
+        <!-- NASA Model Credit (s07, s09, s10) -->
+        <div class="nasa-model-credit" id="nasaModelCredit">
+          <span>3D MODEL: NASA / AMES</span>
+        </div>
+      </div>
+
+      <!-- Section Change Flash Overlay -->
+      <div class="section-flash" id="sectionFlash"></div>
+    </section>
+
+    <!-- CHAPTER 2 CINEMATIC CONTAINER: INSIDE KEPLER -->
+    <section class="slide-deck-item" id="chapter-2" data-slide-index="4" aria-label="Chapter 2: Inside Kepler">
+      <!-- Persistent Top-Left Chapter 2 Header (under navbar) -->
+      <div class="ch-persistent-header" id="ch2PersistentHeader">
+        <div class="ch-header-left">
+          <span class="ch-badge" id="ch2Badge">CHAPTER 2</span>
+          <h2 class="ch-section-title" id="ch2SectionTitle">ENGINEERING PRINCIPLES</h2>
+          <p class="ch-section-subtitle" id="ch2SectionSubtitle">How Kepler worked as one precision instrument.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 2 Entry Title Card (Black screen, amber CHAPTER 2, INSIDE KEPLER, subtitle, blur -> hold 2.5s -> glide top-left) -->
+      <div class="ch2-intro-overlay" id="ch2IntroOverlay" aria-hidden="true">
+        <div class="ch2-intro-inner">
+          <span class="ch-titlecard-badge">CHAPTER 2</span>
+          <h1 class="ch-titlecard-title">INSIDE KEPLER</h1>
+          <div class="ch-titlecard-line"></div>
+          <p class="ch-titlecard-sub ch2-intro-sub">THE TECHNOLOGY BEHIND PLANET DISCOVERY</p>
+        </div>
+      </div>
+
+      <!-- Chapter 2 Section Title Card Overlay -->
+      <div class="ch-titlecard-overlay" id="ch2TitleCardOverlay">
+        <div class="ch-titlecard-inner" id="ch2TitleCardInner">
+          <span class="ch-titlecard-badge">CHAPTER 2</span>
+          <h1 class="ch-titlecard-title" id="ch2TitleCardTitle">ENGINEERING PRINCIPLES</h1>
+          <div class="ch-titlecard-line"></div>
+          <p class="ch-titlecard-sub" id="ch2TitleCardSub">How Kepler worked as one precision instrument.</p>
+        </div>
+      </div>
+
+      <!-- Section 3 Manrope Intro Text Overlay (~4s, no audio) -->
+      <div class="ch2-section-intro-overlay" id="ch2SectionIntroOverlay" aria-hidden="true">
+        <p class="ch2-section-intro-text" id="ch2SectionIntroText"></p>
+      </div>
+
+      <!-- Chapter 2 Visual Stage -->
+      <div class="ch2-visual-stage" id="ch2VisualStage">
+        <!-- c2-s01: Title Slide -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s01">
+          <div class="ch2-s01-layout">
+            <div class="ch2-title-accent-wrap">
+              <span class="ch2-accent-bar" aria-hidden="true"></span>
+              <h2 class="ch2-hero-title">ENGINEERING FOR THE EXTRAORDINARY PRECISION</h2>
+            </div>
+            <div class="ch2-kepler-3d-wrap">
+              <canvas id="ch2KeplerCanvas" aria-label="Rotating 3D NASA Kepler Space Telescope"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- c2-s02: Two-Button Topic Choice Screen -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s02">
+          <div class="ch2-topics-center">
+            <button type="button" class="ch2-topic-choice glass" data-ch2-nav="c2-s03">
+              <span class="ch2-choice-kicker">TOPIC 01</span>
+              <span class="ch2-choice-title">Capturing Starlight and Measuring Its Secrets</span>
+            </button>
+            <button type="button" class="ch2-topic-choice glass" data-ch2-nav="c2-s04">
+              <span class="ch2-choice-kicker">TOPIC 02</span>
+              <span class="ch2-choice-title">Maintaining Precision and Discovering Distant Worlds</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- c2-s03: Detail 1 — Capturing Starlight -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s03">
+          <div class="ch2-detail-layout">
+            <div class="ch2-slide-title-row">
+              <span class="ch2-accent-bar sm" aria-hidden="true"></span>
+              <h3 class="ch2-slide-title">Capturing Starlight and Measuring Its Secrets</h3>
+            </div>
+            <div class="ch2-canvas-frame">
+              <canvas id="ch2OpticsCanvas" aria-label="Kepler optical system, 42 CCD mosaic, and telemetry readout"></canvas>
+            </div>
+            <div class="ch2-detail-actions">
+              <button type="button" class="ctl" data-ch2-nav="c2-s02">BACK TO TOPICS</button>
+              <button type="button" class="ctl glow" data-ch2-nav="c2-s05">NEXT</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- c2-s04: Detail 2 — Maintaining Precision -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s04">
+          <div class="ch2-detail-layout">
+            <div class="ch2-slide-title-row">
+              <span class="ch2-accent-bar sm" aria-hidden="true"></span>
+              <h3 class="ch2-slide-title">Maintaining Precision and Discovering Distant Worlds</h3>
+            </div>
+            <div class="ch2-canvas-frame">
+              <canvas id="ch2PrecisionCanvas" aria-label="Three-axis stabilization, calibration pipeline, and transit light curve"></canvas>
+            </div>
+            <div class="ch2-detail-actions">
+              <button type="button" class="ctl" data-ch2-nav="c2-s02">BACK TO TOPICS</button>
+              <button type="button" class="ctl glow" data-ch2-nav="c2-s05">NEXT</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- c2-s05: Anatomy of the Spacecraft -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s05">
+          <div class="ch2-anatomy-wrap">
+            <iframe
+              id="anatomyFrame"
+              class="ch2-anatomy-iframe"
+              title="Kepler Space Telescope Interactive 3D Anatomy Explorer"
+              allowtransparency="true"
+              loading="lazy"
+            ></iframe>
+            <div class="ch2-anatomy-credit">
+              Interactive 3D explorer &middot; Model: NASA / Ames Research Center &amp; JPL specifications
+            </div>
+          </div>
+        </div>
+
+        <!-- c2-s06: Part 3 — Mission Challenges -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s06">
+          <div class="ch2-detail-layout ch2-part3-layout">
+            <div class="ch2-slide-title-row">
+              <span class="ch2-accent-bar sm" aria-hidden="true"></span>
+              <h3 class="ch2-slide-title">Mission Challenges: When Kepler Lost Its Precision</h3>
+            </div>
+            <div class="ch2-canvas-frame">
+              <canvas id="ch2ChallengesCanvas" aria-label="Reaction wheel failures timeline and telescope pointing drift"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- c2-s07: Part 3 — The K2 Revival -->
+        <div class="ch2-slide-panel" data-ch2-slide="c2-s07">
+          <div class="ch2-detail-layout ch2-part3-layout">
+            <div class="ch2-slide-title-row">
+              <span class="ch2-accent-bar sm" aria-hidden="true"></span>
+              <h3 class="ch2-slide-title">The K2 Revival: Engineering a Second Mission</h3>
+            </div>
+            <div class="ch2-canvas-frame">
+              <canvas id="ch2K2Canvas" aria-label="Solar pressure stabilization along the ecliptic and 19 K2 campaigns"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-flash" id="ch2SectionFlash"></div>
+    </section>
+
+    <!-- CHAPTER 3 CINEMATIC CONTAINER: DISCOVERIES AND LEGACY -->
+    <section class="slide-deck-item" id="chapter-3" data-slide-index="5" aria-label="Chapter 3: Discoveries and Legacy">
+      <!-- Persistent Top-Left Chapter 3 Header (under navbar) -->
+      <div class="ch-persistent-header" id="ch3PersistentHeader">
+        <div class="ch-header-left">
+          <span class="ch-badge" id="ch3Badge">CHAPTER 3</span>
+          <h2 class="ch-section-title" id="ch3SectionTitle">A UNIVERSE UNVEILED</h2>
+          <p class="ch-section-subtitle" id="ch3SectionSubtitle">Discoveries that changed our cosmic perspective.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 3 Entry Title Card (Black screen, amber CHAPTER 3, DISCOVERIES AND LEGACY, subtitle) -->
+      <div class="ch3-intro-overlay" id="ch3IntroOverlay" aria-hidden="true">
+        <div class="ch3-intro-inner">
+          <span class="ch-titlecard-badge">CHAPTER 3</span>
+          <h1 class="ch-titlecard-title">DISCOVERIES AND LEGACY</h1>
+          <div class="ch-titlecard-line"></div>
+          <p class="ch-titlecard-sub ch3-intro-sub">KEPLER'S SEARCH FOR NEW WORLDS</p>
+        </div>
+      </div>
+
+      <!-- Chapter 3 Section Title Card Overlay -->
+      <div class="ch-titlecard-overlay" id="ch3TitleCardOverlay">
+        <div class="ch-titlecard-inner" id="ch3TitleCardInner">
+          <span class="ch-titlecard-badge">CHAPTER 3</span>
+          <h1 class="ch-titlecard-title" id="ch3TitleCardTitle">A UNIVERSE UNVEILED</h1>
+          <div class="ch-titlecard-line"></div>
+          <p class="ch-titlecard-sub" id="ch3TitleCardSub">Discoveries that changed our cosmic perspective.</p>
+        </div>
+      </div>
+
+      <!-- Chapter 3 Visual Stage -->
+      <div class="ch3-visual-stage" id="ch3VisualStage">
+        <!-- c3-s01: The Hidden Landscape -->
+        <div class="ch3-slide-panel" data-ch3-slide="c3-s01">
+          <canvas id="ch3PointsCanvas" class="ch3-canvas-full" aria-label="4,000 discovered exoplanets by size and composition"></canvas>
+          <svg class="ch3-leader-svg" id="ch3LeaderSvg" aria-hidden="true">
+            <line class="ch3-lead-line" id="ch3LeadLine1" x1="0" y1="0" x2="0" y2="0"/>
+            <text class="ch3-lead-text" id="ch3LeadText1" x="0" y="0"></text>
+            <line class="ch3-lead-line ember" id="ch3LeadLine2" x1="0" y1="0" x2="0" y2="0"/>
+            <text class="ch3-lead-text ember" id="ch3LeadText2" x="0" y="0"></text>
+          </svg>
+          <div class="ch3-slide-header">
+            <span class="ch3-accent-bar" aria-hidden="true"></span>
+            <h3 class="ch3-slide-title">THE HIDDEN LANDSCAPE</h3>
+          </div>
+          <div class="ch3-counter-overlay" id="ch3S01Counter">
+            <span class="ch3-counter-num" id="ch3S01CounterNum">0</span>
+            <span class="ch3-counter-label" id="ch3S01CounterLabel">CONFIRMED EXOPLANETS</span>
+          </div>
+          <div class="ch3-legend" id="ch3S01Legend"></div>
+        </div>
+
+        <!-- c3-s02: Meet Two of Kepler's Worlds -->
+        <div class="ch3-slide-panel" data-ch3-slide="c3-s02">
+          <div class="ch3-slide-header">
+            <span class="ch3-accent-bar" aria-hidden="true"></span>
+            <h3 class="ch3-slide-title">MEET TWO OF KEPLER'S WORLDS</h3>
+          </div>
+          <div class="ch3-worlds-layout">
+            <div class="ch3-worlds-grid">
+              <div class="ch3-planet-slot" data-world="kepler-22b" tabindex="0" aria-label="Inspect Kepler-22b">
+                <div class="ch3-planet-canvas-wrap">
+                  <canvas id="ch3Planet22bCanvas" aria-label="Interactive 3D concept of Kepler-22b"></canvas>
+                </div>
+                <button type="button" class="ch3-planet-name">KEPLER-22b</button>
+                <p class="ch3-planet-desc" id="ch3Planet22bDesc" aria-live="polite"></p>
+              </div>
+              <div class="ch3-planet-slot" data-world="kepler-186f" tabindex="0" aria-label="Inspect Kepler-186f">
+                <div class="ch3-planet-canvas-wrap">
+                  <canvas id="ch3Planet186fCanvas" aria-label="Interactive 3D concept of Kepler-186f"></canvas>
+                </div>
+                <button type="button" class="ch3-planet-name">KEPLER-186f</button>
+                <p class="ch3-planet-desc" id="ch3Planet186fDesc" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <div class="ch3-hz-diagram" aria-label="Schematic habitable zone comparison">
+              <div class="ch3-hz-track">
+                <div class="ch3-hz-star" title="Host Star"></div>
+                <div class="ch3-hz-band" id="ch3HzBand">
+                  <span class="ch3-hz-band-label">HABITABLE ZONE</span>
+                </div>
+                <div class="ch3-hz-marker" id="ch3HzMarker22b" data-world="kepler-22b" tabindex="0" role="button" aria-label="Select Kepler-22b in habitable zone">
+                  <span class="ch3-hz-dot"></span>
+                  <span class="ch3-hz-marker-label">Kepler-22b</span>
+                </div>
+                <div class="ch3-hz-marker" id="ch3HzMarker186f" data-world="kepler-186f" tabindex="0" role="button" aria-label="Select Kepler-186f in habitable zone">
+                  <span class="ch3-hz-dot"></span>
+                  <span class="ch3-hz-marker-label">Kepler-186f</span>
+                </div>
+              </div>
+              <div class="ch3-hz-meta">
+                <span id="ch3HzScaleLabel">NOT TO SCALE</span>
+                <span class="ch3-concept-note" id="ch3ConceptNote">ARTIST'S CONCEPT, NOT A PHOTOGRAPH</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- c3-s03: The Handover -->
+        <div class="ch3-slide-panel" data-ch3-slide="c3-s03">
+          <div class="ch3-slide-header">
+            <span class="ch3-accent-bar" aria-hidden="true"></span>
+            <h3 class="ch3-slide-title">THE HANDOVER</h3>
+          </div>
+          <canvas id="ch3HandoverCanvas" class="ch3-canvas-full" aria-label="Kepler handing its legacy archive to TESS and JWST"></canvas>
+          <div class="ch3-handover-hud">
+            <div class="ch3-ho-label" id="ch3HoKepler">
+              <span class="ch3-ho-name" id="ch3HoKeplerName">KEPLER</span>
+              <span class="ch3-ho-sub" id="ch3HoKeplerYears">2009 TO 2018</span>
+              <span class="ch3-ho-retired" id="ch3HoRetired"></span>
+            </div>
+            <button type="button" class="ch3-ho-label ch3-ho-interactive" id="ch3HoTess" aria-label="Inspect TESS role">
+              <span class="ch3-ho-name" id="ch3HoTessTitle"></span>
+              <span class="ch3-ho-sub" id="ch3HoTessSub"></span>
+            </button>
+            <button type="button" class="ch3-ho-label ch3-ho-interactive" id="ch3HoJwst" aria-label="Inspect JWST role">
+              <span class="ch3-ho-name" id="ch3HoJwstTitle"></span>
+              <span class="ch3-ho-sub" id="ch3HoJwstSub"></span>
+            </button>
+          </div>
+          <p class="ch3-ho-role-box" id="ch3HoRoleBox" aria-live="polite"></p>
+        </div>
+
+        <!-- c3-s04: Legacy Written Among the Stars -->
+        <div class="ch3-slide-panel" data-ch3-slide="c3-s04">
+          <div class="ch3-slide-header">
+            <span class="ch3-accent-bar" aria-hidden="true"></span>
+            <h3 class="ch3-slide-title">LEGACY WRITTEN AMONG THE STARS</h3>
+          </div>
+          <canvas id="ch3PathCanvas" class="ch3-canvas-full" aria-label="Luminous journey path across the Milky Way"></canvas>
+        </div>
+
+        <!-- c3-s05: The Search Continues (Closing Card) -->
+        <div class="ch3-slide-panel" data-ch3-slide="c3-s05">
+          <div class="ch3-closing-stage">
+            <div class="ch3-closing-lines">
+              <h2 class="ch3-closing-line" id="ch3CloseH1">ONE TELESCOPE.</h2>
+              <h2 class="ch3-closing-line" id="ch3CloseH2">THOUSANDS OF WORLDS.</h2>
+              <h2 class="ch3-closing-line" id="ch3CloseH3">A UNIVERSE OF POSSIBILITIES.</h2>
+            </div>
+            <p class="ch3-closing-body" id="ch3CloseBody" aria-live="polite"></p>
+            <h3 class="ch3-closing-line final" id="ch3CloseFinal">THE JOURNEY DOESN'T END HERE.</h3>
+            <span class="ch3-closing-footer-years" id="ch3CloseYears">KEPLER SPACE TELESCOPE &bull; 2009 to 2018</span>
+            <div class="ch3-closing-actions" id="ch3CloseActions">
+              <button type="button" class="ctl glow" id="ch3ReplayBtn">REPLAY THE JOURNEY</button>
+              <button type="button" class="ctl" id="ch3AboutBtn">ABOUT US</button>
+              <a class="ctl" id="ch3AckBtn" href="./acknowledgements.html">ACKNOWLEDGEMENTS</a>
+              <a class="ctl" id="ch3GithubBtn" href="https://github.com/AgnesJerusha/Kepler--main" target="_blank" rel="noopener">GITHUB</a>
+            </div>
+            <p class="ch3-closing-credit" id="ch3CloseCredit"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-flash" id="ch3SectionFlash"></div>
+    </section>
+
+  </main>
+
+  <!-- Fixed Bottom HUD (Unified Content Box + Controls) -->
+  <footer class="bottom-hud" id="bottomHud" role="region" aria-label="Story Navigation and Fact Telemetry">
+    <!-- Unified Bottom Content Card (No stray floating side paragraphs) -->
+    <div class="bottom-card glass" id="bottomCard">
+      <!-- Typed Narration Subtitle -->
+      <div class="dialogue-row" id="dialogueRow">
+        <p class="subtitle-text" id="subtitleText" aria-live="polite"></p>
+      </div>
+
+      <!-- Embedded Fact Row (Appears cleanly inside the card when present) -->
+      <div class="fact-row" id="factRow">
+        <span class="fact-badge">TELEMETRY</span>
+        <p class="fact-text" id="factText" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <!-- Slide Navigation Controls -->
+    <nav class="controls" id="deckControls" aria-label="Slide navigation">
+      <button class="ctl" id="prevBtn" type="button">PREVIOUS</button>
+      <div class="dots" id="deckDots"></div>
+      <button class="ctl glow" id="nextBtn" type="button">BEGIN JOURNEY</button>
+    </nav>
+
+    <!-- Persistent Footer Tile with Visible Acknowledgements & SI Disclosure Button -->
+    <div class="hud-footer-tile" aria-label="Project Transparency Footer">
+      <span class="hud-footer-meta">EXO WORLDS &middot; TEAM DORMANT</span>
+      <a class="hud-ack-btn" id="footerAckBtn" href="./acknowledgements.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 8v4l2.5 1.5"/>
+        </svg>
+        <span>ACKNOWLEDGEMENTS &amp; SI DISCLOSURE</span>
+        <span class="hud-ack-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- Thin Progress Line at bottom edge -->
+    <div class="progress-line-container">
+      <div class="progress-line-fill" id="progressLineFill"></div>
+    </div>
+  </footer>
+
+  <!-- Modals: Syncopate Titles, Manrope Body, Polished Glass, Glowing Borders -->
+  <div class="modal" id="about" role="dialog" aria-modal="true" aria-label="About Us">
+    <div class="glass card modal-card">
+      <button class="x" id="aboutCloseBtn" data-close aria-label="Close" type="button">&times;</button>
+      <h3 class="modal-title">TEAM DORMANT</h3>
+      <p class="modal-desc"> As first-year students stepping into our first NASA Space Apps Challenge, our objective is simple: to bridge the gap between sci-fi imagination and real astrophysics.</p>
+      <div class="team-slots">
+        <div class="slot-row">
+          <span class="slot-role">Our Vision </span>
+          <span class="slot-detail">Growing up mesmerized by science fiction cinema, we always wondered how much of what we saw on screen was hiding in the real night sky.  </span>
+        </div>
+        <div class="slot-row">
+          <span class="slot-role">Three.js &amp; Our Aim</span>
+          <span class="slot-detail">Through this interactive story, we aim to translate Kepler’s complex light-curve discoveries into an intuitive, visual adventure helping anyone explore the rocky, and potentially habitable worlds waiting beyond our solar system.</span>
+        </div>
+        <div class="slot-row">
+          <span class="slot-role">Our Aspiration</span>
+          <span class="slot-detail">we aspire to grow into builders and storytellers who make deep-space science accessible to everyone. This hackathon is our launchpad—the first step toward solving bigger cosmic puzzles, mastering interactive technology, and turning our fascination with space mysteries into real-world impact.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="contact" role="dialog" aria-modal="true" aria-label="Contact Us">
+    <div class="glass card modal-card">
+      <button class="x" id="contactCloseBtn" data-close aria-label="Close" type="button">&times;</button>
+      <h3 class="modal-title">CONNECT WITH US</h3>
+      <p class="modal-desc">Reach out to Team Dormant regarding the EXO WORLDS project and NASA Space Apps Challenge submission.</p>
+      <div class="team-slots">
+        <div class="slot-row">
+          <span class="slot-role">PROJECT REPOSITORY</span>
+          <a class="slot-link" id="contactRepoLink" href="https://github.com/AgnesJerusha/Kepler--main" target="_blank" rel="noopener">https://github.com/AgnesJerusha/Kepler--main</a>
+        </div>
+        <div class="slot-row">
+          <span class="slot-role">TEAM INQUIRIES</span>
+          <a class="slot-link" href="mailto:teamdormant@gmail.com">teamdormant@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="missionNavModal" role="dialog" aria-modal="true" aria-label="Mission Chapter Navigation">
+    <div class="glass card modal-card mission-nav-card">
+      <button class="x" id="missionNavCloseBtn" data-close aria-label="Close" type="button">&times;</button>
+      <h3 class="modal-title">MISSION NAVIGATION</h3>
+      <p class="modal-desc">Jump directly to any chapter or main section of the EXO WORLDS journey.</p>
+      <div class="nav-chapters">
+        <div class="nav-chapter-block">
+          <div class="nav-chapter-head">
+            <div>
+              <span class="slot-role">CHAPTER 1</span>
+              <h4 class="nav-chapter-name">AWAKENING THE COSMOS</h4>
+            </div>
+            <button type="button" class="nav-chapter-go" data-jump-chapter="1">OPEN CHAPTER &rarr;</button>
+          </div>
+          <div class="nav-parts-row">
+            <button type="button" class="nav-part-btn" data-jump-ch1="s01">1. Mystery of the Universe</button>
+            <button type="button" class="nav-part-btn" data-jump-ch1="s04">2. Scientific Challenge</button>
+            <button type="button" class="nav-part-btn" data-jump-ch1="s06">3. Birth of Kepler</button>
+            <button type="button" class="nav-part-btn" data-jump-ch1="s08">4. Launch &amp; Journey</button>
+          </div>
+        </div>
+
+        <div class="nav-chapter-block">
+          <div class="nav-chapter-head">
+            <div>
+              <span class="slot-role">CHAPTER 2</span>
+              <h4 class="nav-chapter-name">INSIDE KEPLER</h4>
+            </div>
+            <button type="button" class="nav-chapter-go" data-jump-chapter="2">OPEN CHAPTER &rarr;</button>
+          </div>
+          <div class="nav-parts-row">
+            <button type="button" class="nav-part-btn" data-jump-ch2="c2-s01">1. Engineering Principles</button>
+            <button type="button" class="nav-part-btn" data-jump-ch2="c2-s05">2. 3D Spacecraft Anatomy</button>
+            <button type="button" class="nav-part-btn" data-jump-ch2="c2-s06">3. Challenges &amp; K2 Revival</button>
+          </div>
+        </div>
+
+        <div class="nav-chapter-block">
+          <div class="nav-chapter-head">
+            <div>
+              <span class="slot-role">CHAPTER 3</span>
+              <h4 class="nav-chapter-name">DISCOVERIES AND LEGACY</h4>
+            </div>
+            <button type="button" class="nav-chapter-go" data-jump-chapter="3">OPEN CHAPTER &rarr;</button>
+          </div>
+          <div class="nav-parts-row">
+            <button type="button" class="nav-part-btn" data-jump-ch3="c3-s01">1. A Universe Unveiled</button>
+            <button type="button" class="nav-part-btn" data-jump-ch3="c3-s03">2. Beyond the Mission</button>
+            <button type="button" class="nav-part-btn" data-jump-ch3="c3-s04">3. The Final Chapter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="glass" id="toast" role="status"></div>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

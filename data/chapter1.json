@@ -1,0 +1,215 @@
+{
+  "chapter": 1,
+  "title": "Awakening the Cosmos: The Kepler Story",
+  "sections": [
+    {
+      "number": 1,
+      "title": "THE MYSTERY OF THE UNIVERSE",
+      "subtitle": "Is anyone out there?",
+      "slides": ["s01", "s02", "s03"]
+    },
+    {
+      "number": 2,
+      "title": "THE SCIENTIFIC CHALLENGE",
+      "subtitle": "How do you find a world you cannot see?",
+      "slides": ["s04", "s05"]
+    },
+    {
+      "number": 3,
+      "title": "THE BIRTH OF KEPLER",
+      "subtitle": "How scientists imagined, proposed and won approval for a planet-hunting telescope",
+      "slides": ["s06", "s07"]
+    },
+    {
+      "number": 4,
+      "title": "THE LAUNCH AND JOURNEY INTO SPACE",
+      "subtitle": "From Cape Canaveral to a quiet orbit around the Sun",
+      "slides": ["s08", "s09", "s10"]
+    }
+  ],
+  "slides": [
+    {
+      "id": "s01",
+      "section": 1,
+      "title": "THE MYSTERY OF THE UNIVERSE",
+      "sectionSubtitle": "Is anyone out there?",
+      "text": "Have you ever wondered if there is life beyond Earth?",
+      "phrases": [
+        "Have you ever wondered",
+        "if there is life beyond Earth?"
+      ],
+      "breakMs": [1000],
+      "visual": "galaxy",
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch1-s01.mp3"
+    },
+    {
+      "id": "s02",
+      "section": 1,
+      "title": "THE MYSTERY OF THE UNIVERSE",
+      "sectionSubtitle": "Is anyone out there?",
+      "text": "For centuries, humanity has stared into the darkness, searching for answers among the stars. Somewhere out there, there might be worlds we have never seen. Worlds with skies of unfamiliar colours, and perhaps conditions that could support life.",
+      "phrases": [
+        "For centuries, humanity has stared into the darkness, searching for answers among the stars.",
+        "Somewhere out there, there might be worlds we have never seen.",
+        "Worlds with skies of unfamiliar colours, and perhaps",
+        "conditions that could support life."
+      ],
+      "breakMs": [1400, 1000, 800],
+      "visual": "galaxy-drift-stars",
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch1-s02.mp3"
+    },
+    {
+      "id": "s03",
+      "section": 1,
+      "title": "THE MYSTERY OF THE UNIVERSE",
+      "sectionSubtitle": "Is anyone out there?",
+      "text": "Our galaxy holds hundreds of billions of suns. And yet, for most of human history, we knew of only one planetary system. Ours. Then, in the 1990s, humanity confirmed the first planets beyond our Solar System. The universe had just become a much bigger place.",
+      "phrases": [
+        "Our galaxy holds hundreds of billions of suns.",
+        "And yet, for most of human history, we knew of only one planetary system.",
+        "Ours.",
+        "Then, in the 1990s, humanity confirmed the first planets beyond our Solar System.",
+        "The universe had just become a much bigger place."
+      ],
+      "breakMs": [1000, 800, 1400, 1200],
+      "visual": "galaxy-to-star-system",
+      "rolling": true,
+      "fact": "The first planets around other stars were confirmed only in the 1990s. By 2009, only a few hundred were known, mostly giant planets very close to their stars.",
+      "audio": "audio/ch1-s03.mp3"
+    },
+    {
+      "id": "s04",
+      "section": 2,
+      "title": "THE SCIENTIFIC CHALLENGE",
+      "sectionSubtitle": "How do you find a world you cannot see?",
+      "text": "Finding a planet around another star is like trying to spot a firefly next to a searchlight, from thousands of miles away. But there is a trick. If a planet passes in front of its star, the star dims, just a little. Astronomers call it a transit.",
+      "phrases": [
+        "Finding a planet around another star is like trying to spot a firefly next to a searchlight, from thousands of miles away.",
+        "But there is a trick.",
+        "If a planet passes in front of its star, the star dims, just a little.",
+        "Astronomers call it a transit."
+      ],
+      "breakMs": [1400, 800, 1000],
+      "visual": "star-transit-lightcurve",
+      "rolling": true,
+      "fact": "Transit method: watch a star's brightness over time and look for tiny, regular dips.",
+      "audio": "audio/ch1-s04.mp3"
+    },
+    {
+      "id": "s05",
+      "section": 2,
+      "title": "THE SCIENTIFIC CHALLENGE",
+      "sectionSubtitle": "How do you find a world you cannot see?",
+      "text": "For a planet the size of Earth, the starlight drops by only about 84 parts per million. That is a whisper. And our atmosphere blurs it away. To catch it, we need a telescope in space.",
+      "phrases": [
+        "For a planet the size of Earth, the starlight drops by only about 84 parts per million.",
+        "That is a whisper.",
+        "And our atmosphere blurs it away.",
+        "To catch it, we need a telescope in space."
+      ],
+      "breakMs": [1000, 1000, 1400],
+      "visual": "lightcurve-zoom-84ppm",
+      "rolling": true,
+      "fact": "An Earth-size planet dims a Sun-like star by about 0.008%. Earth's atmosphere blurs starlight, so catching these dips from the ground is very hard.",
+      "audio": "audio/ch1-s05.mp3"
+    },
+    {
+      "id": "s06",
+      "section": 3,
+      "title": "THE BIRTH OF KEPLER",
+      "sectionSubtitle": "How scientists imagined, proposed and won approval for a planet-hunting telescope",
+      "text": "One scientist believed it could be done. Dr. William Borucki, at NASA's Ames Research Center, imagined a space telescope that would stare at a field of stars and watch for those tiny dips.",
+      "phrases": [
+        "One scientist believed it could be done.",
+        "Dr. William Borucki,",
+        "at NASA's Ames Research Center,",
+        "imagined a space telescope that would stare at a field of stars",
+        "and watch for those tiny dips."
+      ],
+      "breakMs": [1600, 800, 1000, 1000],
+      "visual": "borucki-photo-kenburns",
+      "rolling": true,
+      "fact": "Proposed by William Borucki, with a team including David Koch (deputy principal investigator).",
+      "audio": "audio/ch1-s06.mp3"
+    },
+    {
+      "id": "s07",
+      "section": 3,
+      "title": "THE BIRTH OF KEPLER",
+      "sectionSubtitle": "How scientists imagined, proposed and won approval for a planet-hunting telescope",
+      "text": "NASA said no. Not once, but several times. But Borucki and his team kept testing, kept building, and kept proving it could work. In 2001, NASA finally said yes. The telescope was named Kepler, after the astronomer who explained how planets move.",
+      "phrases": [
+        "NASA said no.",
+        "Not once, but several times.",
+        "But Borucki and his team kept testing, kept building, and kept proving it could work.",
+        "In 2001, NASA finally said yes.",
+        "The telescope was named Kepler,",
+        "after the astronomer who explained how planets move."
+      ],
+      "breakMs": [1500, 1800, 1500, 1200, 800],
+      "visual": "no-sequence-kepler-3d-rotate",
+      "rolling": true,
+      "fact": "The idea was turned down several times before NASA selected it in 2001. Named for Johannes Kepler, who described the laws of planetary motion in the early 1600s.",
+      "audio": "audio/ch1-s07.mp3"
+    },
+    {
+      "id": "s08",
+      "section": 4,
+      "title": "THE LAUNCH AND JOURNEY INTO SPACE",
+      "sectionSubtitle": "From Cape Canaveral to a quiet orbit around the Sun",
+      "text": "On March 6, 2009, a Delta II rocket lit up the night sky over Cape Canaveral, Florida. Inside the nose cone sat Kepler.",
+      "phrases": [
+        "On March 6, 2009,",
+        "a Delta II rocket lit up the night sky over Cape Canaveral, Florida.",
+        "Inside the nose cone",
+        "sat Kepler."
+      ],
+      "breakMs": [800, 1800, 800],
+      "visual": "cape-canaveral-launch",
+      "rolling": true,
+      "fact": "Launch: March 6, 2009, from Cape Canaveral on a Delta II rocket.",
+      "audio": "audio/ch1-s08.mp3"
+    },
+    {
+      "id": "s09",
+      "section": 4,
+      "title": "THE LAUNCH AND JOURNEY INTO SPACE",
+      "sectionSubtitle": "From Cape Canaveral to a quiet orbit around the Sun",
+      "text": "Kepler flew into its own orbit around the Sun, trailing behind Earth, where it could stare at the same patch of sky without our planet getting in the way.",
+      "phrases": [
+        "Kepler flew into its own orbit around the Sun,",
+        "trailing behind Earth,",
+        "where it could stare at the same patch of sky",
+        "without our planet getting in the way."
+      ],
+      "breakMs": [1000, 1200, 800],
+      "visual": "animated-orbit-diagram",
+      "rolling": true,
+      "fact": "Orbit: around the Sun, trailing Earth, taking about 372 days per loop.",
+      "audio": "audio/ch1-s09.mp3"
+    },
+    {
+      "id": "s10",
+      "section": 4,
+      "title": "THE LAUNCH AND JOURNEY INTO SPACE",
+      "sectionSubtitle": "From Cape Canaveral to a quiet orbit around the Sun",
+      "text": "Its target: a region in the constellations Cygnus and Lyra. Its eyes: a 95-megapixel camera, the largest ever flown in space at that time, watching more than 150,000 stars at once. Never blinking.",
+      "phrases": [
+        "Its target: a region in the constellations Cygnus and Lyra.",
+        "Its eyes: a 95-megapixel camera,",
+        "the largest ever flown in space at that time,",
+        "watching more than 150,000 stars at once.",
+        "Never blinking."
+      ],
+      "breakMs": [1800, 800, 1200, 1800],
+      "visual": "kepler-interactive-3d",
+      "rolling": true,
+      "fact": "Instrument: a photometer with a 95-megapixel camera, built to measure brightness extremely precisely. Field of view: one fixed patch of sky in Cygnus and Lyra.",
+      "audio": "audio/ch1-s10.mp3"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "EXO WORLDS — Inside Kepler",
+  "description": "Interactive 3D cinematic story of NASA's Kepler Space Telescope and exoplanet discovery by Team Dormant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

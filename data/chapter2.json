@@ -1,0 +1,154 @@
+{
+  "chapter": 2,
+  "title": "INSIDE KEPLER",
+  "subtitle": "THE TECHNOLOGY BEHIND PLANET DISCOVERY",
+  "sections": [
+    {
+      "section": 1,
+      "title": "ENGINEERING PRINCIPLES",
+      "subtitle": "How Kepler worked as one precision instrument.",
+      "slideId": "c2-s01",
+      "menuLabel": "Engineering Principles"
+    },
+    {
+      "section": 2,
+      "title": "ANATOMY OF THE SPACECRAFT",
+      "subtitle": "Explore Kepler's parts in 3D.",
+      "slideId": "c2-s05",
+      "menuLabel": "Anatomy of the Spacecraft"
+    },
+    {
+      "section": 3,
+      "title": "MISSION CHALLENGES AND THE K2 REVIVAL",
+      "subtitle": "Engineering beyond failure.",
+      "slideId": "c2-s06",
+      "menuLabel": "Mission Challenges and K2 Revival"
+    }
+  ],
+  "slides": [
+    {
+      "id": "c2-s01",
+      "section": 1,
+      "title": "ENGINEERING PRINCIPLES",
+      "sectionSubtitle": "How Kepler worked as one precision instrument.",
+      "slideTitle": "ENGINEERING FOR THE EXTRAORDINARY PRECISION",
+      "type": "title",
+      "text": "",
+      "phrases": [],
+      "breakMs": [],
+      "rolling": false,
+      "fact": "",
+      "audio": null
+    },
+    {
+      "id": "c2-s02",
+      "section": 1,
+      "title": "ENGINEERING PRINCIPLES",
+      "sectionSubtitle": "How Kepler worked as one precision instrument.",
+      "slideTitle": "ENGINEERING PRINCIPLES",
+      "type": "topics",
+      "text": "To detect Earth-sized worlds around distant stars, Kepler had to work as a single precision instrument. Choose a system below to explore how it captured starlight and preserved that extraordinary precision.",
+      "phrases": [
+        "To detect Earth-sized worlds around distant stars, Kepler had to work as a single precision instrument.",
+        "Choose a topic below to explore how it captured starlight and maintained its extraordinary precision."
+      ],
+      "breakMs": [900],
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch2-p1-intro.mp3"
+    },
+    {
+      "id": "c2-s03",
+      "section": 1,
+      "title": "ENGINEERING PRINCIPLES",
+      "sectionSubtitle": "How Kepler worked as one precision instrument.",
+      "slideTitle": "Capturing Starlight and Measuring Its Secrets",
+      "type": "detail",
+      "text": "Parallel rays of starlight enter the telescope, strike its 1.4-meter concave primary mirror, and reflect toward the prime focus. There, the beam converges onto a curved focal-plane mosaic of 42 charge-coupled device detectors. Photons striking the pixels generate electrical charge, measured with 84-parts-per-million precision. Streams of digital brightness measurements flow continuously out as raw science data.",
+      "phrases": [
+        "Parallel rays of starlight enter the telescope, strike its 1.4-meter concave primary mirror, and reflect toward the prime focus.",
+        "There, the beam converges onto a curved focal-plane mosaic of 42 charge-coupled device detectors.",
+        "Photons striking the pixels generate electrical charge, measured with 84-parts-per-million precision.",
+        "Streams of digital brightness measurements flow continuously out as raw science data."
+      ],
+      "breakMs": [1000, 1000, 1100],
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch2-p1-starlight.mp3"
+    },
+    {
+      "id": "c2-s04",
+      "section": 1,
+      "title": "ENGINEERING PRINCIPLES",
+      "sectionSubtitle": "How Kepler worked as one precision instrument.",
+      "slideTitle": "Maintaining Precision and Discovering Distant Worlds",
+      "type": "detail",
+      "text": "Reaction wheels, hydrazine thrusters, and balanced sunlight pressure keep Kepler steady across all three axes. Raw pixel measurements pass through calibration and noise removal to build a clean light curve. Along that curve, a tiny recurring dip reveals a genuine transit signal. Automated vetting strips out false positives so real planetary candidates stand clear.",
+      "phrases": [
+        "Reaction wheels, hydrazine thrusters, and balanced sunlight pressure keep Kepler steady across all three axes.",
+        "Raw pixel measurements pass through calibration and noise removal to build a clean light curve.",
+        "Along that curve, a tiny recurring dip reveals a genuine transit signal.",
+        "Automated vetting strips out false positives so real planetary candidates stand clear."
+      ],
+      "breakMs": [1000, 1000, 1000],
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch2-p1-precision.mp3"
+    },
+    {
+      "id": "c2-s05",
+      "section": 2,
+      "title": "ANATOMY OF THE SPACECRAFT",
+      "sectionSubtitle": "Explore Kepler's parts in 3D.",
+      "slideTitle": "ANATOMY OF THE SPACECRAFT",
+      "type": "anatomy",
+      "text": "",
+      "phrases": [],
+      "breakMs": [],
+      "rolling": false,
+      "fact": "",
+      "audio": null
+    },
+    {
+      "id": "c2-s06",
+      "section": 3,
+      "title": "MISSION CHALLENGES AND THE K2 REVIVAL",
+      "sectionSubtitle": "Engineering beyond failure.",
+      "sectionIntro": "This part of Kepler's story reveals how even the most advanced spacecraft can face unexpected failures, and how engineering innovation can give a space mission a second life.",
+      "slideTitle": "Mission Challenges: When Kepler Lost Its Precision",
+      "type": "challenges",
+      "text": "Kepler launched with four reaction wheels spinning in balance to hold the spacecraft steady. In July 2012, the first reaction wheel failed, leaving three to carry the load. In May 2013, a second reaction wheel failed. With only two wheels remaining, Kepler began to wobble and drift off its pointing as the starfield jittered. The telescope had lost the fine pointing precision required for its primary mission.",
+      "phrases": [
+        "Kepler launched with four reaction wheels spinning in balance to hold the spacecraft steady.",
+        "In July 2012, the first reaction wheel failed, leaving three to carry the load.",
+        "In May 2013, a second reaction wheel failed.",
+        "With only two wheels remaining, Kepler began to wobble and drift off its pointing as the starfield jittered.",
+        "The telescope had lost the fine pointing precision required for its primary mission."
+      ],
+      "breakMs": [1000, 1000, 1000, 1100],
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch2-p3-challenges.mp3"
+    },
+    {
+      "id": "c2-s07",
+      "section": 3,
+      "title": "MISSION CHALLENGES AND THE K2 REVIVAL",
+      "sectionSubtitle": "Engineering beyond failure.",
+      "slideTitle": "The K2 Revival: Engineering a Second Mission",
+      "type": "k2",
+      "text": "Engineers aligned Kepler along the ecliptic plane so sunlight pressure balanced gently against the spacecraft. Working with the two remaining reaction wheels and brief thruster puffs, solar pressure restored stability. Reborn as K2, Kepler scanned successive fields along the ecliptic in 80-day observing campaigns. Across 19 campaigns, K2 continued discovering new worlds for four more years. After running out of propellant, Kepler retired on October 30, 2018.",
+      "phrases": [
+        "Engineers aligned Kepler along the ecliptic plane so sunlight pressure balanced gently against the spacecraft.",
+        "Working with the two remaining reaction wheels and brief thruster puffs, solar pressure restored stability.",
+        "Reborn as K2, Kepler scanned successive fields along the ecliptic in 80-day observing campaigns.",
+        "Across 19 campaigns, K2 continued discovering new worlds for four more years.",
+        "After running out of propellant, Kepler retired on October 30, 2018."
+      ],
+      "breakMs": [1000, 1000, 1000, 1100],
+      "rolling": true,
+      "fact": "",
+      "audio": "audio/ch2-p3-k2.mp3"
+    }
+  ]
+}

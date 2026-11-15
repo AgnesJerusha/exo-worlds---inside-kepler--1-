@@ -1,0 +1,201 @@
+{
+  "chapter": 3,
+  "title": "DISCOVERIES AND LEGACY",
+  "subtitle": "KEPLER'S SEARCH FOR NEW WORLDS",
+  "timings": {
+    "introHoldMs": 2650,
+    "introGlideMs": 850,
+    "sectionCardHoldMs": 2200,
+    "offlineCharMs": 34,
+    "counterDurationMs": 2200
+  },
+  "sections": [
+    {
+      "section": 1,
+      "title": "A UNIVERSE UNVEILED",
+      "subtitle": "Discoveries that changed our cosmic perspective.",
+      "slideId": "c3-s01",
+      "menuLabel": "A Universe Unveiled"
+    },
+    {
+      "section": 2,
+      "title": "BEYOND THE MISSION",
+      "subtitle": "Kepler's legacy and the future of exploration.",
+      "slideId": "c3-s03",
+      "menuLabel": "Beyond the Mission"
+    },
+    {
+      "section": 3,
+      "title": "THE FINAL CHAPTER",
+      "subtitle": "A legacy written among the stars.",
+      "slideId": "c3-s04",
+      "menuLabel": "The Final Chapter"
+    }
+  ],
+  "slides": [
+    {
+      "id": "c3-s01",
+      "section": 1,
+      "title": "A UNIVERSE UNVEILED",
+      "sectionSubtitle": "Discoveries that changed our cosmic perspective.",
+      "slideTitle": "THE HIDDEN LANDSCAPE",
+      "type": "pointfield",
+      "rolling": true,
+      "hideHeader": false,
+      "hideMenu": false,
+      "audio": "audio/ch3-1-universe.mp3",
+      "rawText": "Beyond our Solar System lies a universe filled with worlds we never knew existed. <break time=\"1.2s\" /> Kepler transformed our understanding by revealing thousands of planets beyond our Solar System, showing that planetary systems are far more common and diverse than we ever imagined. <break time=\"1.2s\" /> From Kepler-22b, a planet orbiting within its star's habitable zone, to Kepler-186f, one of the first Earth-sized planets found in the habitable zone of another star, its discoveries exposed an extraordinary variety of distant worlds. <break time=\"1.2s\" /> By finding planets of different sizes, orbital periods and compositions, Kepler gave us crucial evidence that Earth-sized planets may be widespread across the Milky Way, reshaping our place in the cosmos.",
+      "config": {
+        "pointCount": 4000,
+        "confirmedExoplanets": 2700,
+        "confirmedSuffix": "+",
+        "confirmedLabel": "CONFIRMED EXOPLANETS",
+        "volumeRadius": 120,
+        "volumeDepth": 160,
+        "cameraStartZ": 78,
+        "cameraDriftZ": 38,
+        "cameraPullbackZ": 108,
+        "rotationSpeed": 0.032,
+        "sizeClasses": [
+          { "label": "SMALL", "weight": 0.36, "color": "#7ab8ff", "size": 1.35 },
+          { "label": "EARTH-SIZE", "weight": 0.30, "color": "#4fd1c5", "size": 1.85 },
+          { "label": "LARGER", "weight": 0.22, "color": "#ffb27a", "size": 2.65 },
+          { "label": "GIANT", "weight": 0.12, "color": "#fff3e0", "size": 3.55 }
+        ],
+        "featured": [
+          { "id": "kepler-22b", "label": "Kepler-22b", "pos": [-22, 11, 14], "color": "#4fd1c5" },
+          { "id": "kepler-186f", "label": "Kepler-186f", "pos": [21, -8, 8], "color": "#ffb27a" }
+        ],
+        "legendTags": ["SIZES", "ORBITAL PERIODS", "COMPOSITIONS"]
+      }
+    },
+    {
+      "id": "c3-s02",
+      "section": 1,
+      "title": "A UNIVERSE UNVEILED",
+      "sectionSubtitle": "Discoveries that changed our cosmic perspective.",
+      "slideTitle": "MEET TWO OF KEPLER'S WORLDS",
+      "type": "worlds",
+      "rolling": false,
+      "hideHeader": false,
+      "hideMenu": false,
+      "audio": null,
+      "rawText": "",
+      "config": {
+        "disclaimer": "ARTIST'S CONCEPT, NOT A PHOTOGRAPH",
+        "diagramScaleLabel": "NOT TO SCALE",
+        "habitableZoneStartPct": 42,
+        "habitableZoneEndPct": 72,
+        "planets": [
+          {
+            "id": "kepler-22b",
+            "name": "KEPLER-22b",
+            "seed": 22,
+            "spinSpeed": 0.055,
+            "tiltZ": 0.32,
+            "palette": "ocean",
+            "atmosphereColor": "#4fd1c5",
+            "hzPositionPct": 52,
+            "description": "Kepler-22b: a planet orbiting within its star's habitable zone."
+          },
+          {
+            "id": "kepler-186f",
+            "name": "KEPLER-186f",
+            "seed": 186,
+            "spinSpeed": 0.045,
+            "tiltZ": 0.24,
+            "palette": "rustOlive",
+            "atmosphereColor": "#ffb27a",
+            "hzPositionPct": 64,
+            "description": "Kepler-186f: one of the first Earth-sized planets found in the habitable zone of another star."
+          }
+        ]
+      }
+    },
+    {
+      "id": "c3-s03",
+      "section": 2,
+      "title": "BEYOND THE MISSION",
+      "sectionSubtitle": "Kepler's legacy and the future of exploration.",
+      "slideTitle": "THE HANDOVER",
+      "type": "handover",
+      "rolling": true,
+      "hideHeader": false,
+      "hideMenu": false,
+      "audio": "audio/ch3-2-legacy.mp3",
+      "rawText": "Kepler's journey ended, but its discoveries opened a new chapter in humanity's exploration of distant worlds. <break time=\"1.2s\" /> It left behind an enormous archive of stellar measurements that still supports new astronomical discoveries. <break time=\"1.0s\" /> Its findings laid the groundwork for future missions such as NASA's TESS, which searches for planets around nearby stars, and the James Webb Space Telescope, which investigates the atmospheres and properties of distant worlds. <break time=\"1.2s\" /> Kepler ran out of fuel and was officially retired on October 30, 2018, but its legacy continues to guide planetary research, inspire future missions, and expand our search for potentially habitable worlds.",
+      "config": {
+        "streamParticleCount": 420,
+        "keplerLabel": "KEPLER",
+        "keplerYears": "2009 TO 2018",
+        "retiredLabel": "RETIRED OCTOBER 30, 2018",
+        "targets": [
+          {
+            "id": "tess",
+            "title": "TESS",
+            "subtitle": "NEARBY STARS",
+            "modelPath": "assets/tess.glb",
+            "role": "TESS: searches for planets around nearby stars."
+          },
+          {
+            "id": "jwst",
+            "title": "JWST",
+            "subtitle": "ATMOSPHERES OF DISTANT WORLDS",
+            "modelPath": "assets/jwst.glb",
+            "role": "JWST: investigates the atmospheres and properties of distant worlds."
+          }
+        ]
+      }
+    },
+    {
+      "id": "c3-s04",
+      "section": 3,
+      "title": "THE FINAL CHAPTER",
+      "sectionSubtitle": "A legacy written among the stars.",
+      "slideTitle": "LEGACY WRITTEN AMONG THE STARS",
+      "type": "galaxyPath",
+      "rolling": true,
+      "hideHeader": false,
+      "hideMenu": false,
+      "audio": "audio/ch3-3-final.mp3",
+      "rawText": "From humanity's first questions about distant worlds, to the discovery of thousands of exoplanets, Kepler changed the way we see our place in the universe. <break time=\"1.2s\" /> Through remarkable engineering, extraordinary precision, and an inspiring recovery with the K2 mission, it kept exploring even when its original mission failed. <break time=\"1.2s\" /> Its discoveries, and its vast archive of observations, still guide missions like TESS and the James Webb Space Telescope. <break time=\"1.4s\" /> Kepler's journey may have ended, but its greatest achievement was opening our eyes to a universe filled with worlds waiting to be explored. <break time=\"1.2s\" /> And every discovery brings us closer to understanding how extraordinary our universe truly is.",
+      "config": {
+        "cameraClose": { "x": 20, "y": 95, "z": 195, "rx": -0.44, "ry": 0.12 },
+        "cameraPullback": { "x": 0, "y": 175, "z": 315, "rx": -0.54, "ry": 0 },
+        "nodes": [
+          { "id": 1, "label": "THE FIRST QUESTIONS", "x": 0.16, "y": 0.62, "phraseIndex": 0, "subDelayMs": 0 },
+          { "id": 2, "label": "THOUSANDS OF WORLDS", "x": 0.34, "y": 0.44, "phraseIndex": 0, "subDelayMs": 1900 },
+          { "id": 3, "label": "ENGINEERING AND PRECISION", "x": 0.52, "y": 0.58, "phraseIndex": 1, "subDelayMs": 0 },
+          { "id": 4, "label": "THE K2 RECOVERY", "x": 0.69, "y": 0.39, "phraseIndex": 1, "subDelayMs": 1900 },
+          { "id": 5, "label": "TESS AND JWST", "x": 0.84, "y": 0.50, "phraseIndex": 2, "subDelayMs": 0 }
+        ]
+      }
+    },
+    {
+      "id": "c3-s05",
+      "section": 3,
+      "title": "THE FINAL CHAPTER",
+      "sectionSubtitle": "A legacy written among the stars.",
+      "slideTitle": "THE SEARCH CONTINUES",
+      "type": "closing",
+      "rolling": true,
+      "hideHeader": true,
+      "hideMenu": true,
+      "audio": "audio/ch3-4-closing.mp3",
+      "rawText": "One telescope. <break time=\"1.0s\" /> Thousands of worlds. <break time=\"1.0s\" /> A universe of possibilities. <break time=\"1.4s\" /> Kepler turned distant starlight into discoveries that reshaped our understanding of the universe. And although its mission has ended, the worlds it revealed, and the questions it inspired, continue to guide our search beyond the Solar System. <break time=\"1.6s\" /> The journey doesn't end here.",
+      "config": {
+        "headlines": [
+          "ONE TELESCOPE.",
+          "THOUSANDS OF WORLDS.",
+          "A UNIVERSE OF POSSIBILITIES."
+        ],
+        "body": "Kepler turned distant starlight into discoveries that reshaped our understanding of the universe. And although its mission has ended, the worlds it revealed, and the questions it inspired, continue to guide our search beyond the Solar System.",
+        "closingLine": "THE JOURNEY DOESN'T END HERE.",
+        "footerYears": "KEPLER SPACE TELESCOPE • 2009 to 2018",
+        "creditLine": "Team Dormant, NASA Space Apps Challenge 2026. Data and imagery: NASA/Kepler.",
+        "creditYear": 2026,
+        "ctaShowDelayMs": 450
+      }
+    }
+  ]
+}
